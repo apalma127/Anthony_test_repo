@@ -78,6 +78,7 @@ ggmap(world) +
 
 ```
 
+More company owned and licensed starbucks are north american and western whereas more joint ventures are popular specifically in asia.  
   
 
   2. Construct a new map of Starbucks locations in the Twin Cities metro area (approximately the 5 county metro area). 
@@ -176,12 +177,12 @@ starbucks_with_2018_pop_est <-
 162 - reads in csv and saving data as `census_pop_est_2018`
 163 -  separates the leading dot from the state name, and makes new column `dot` that is empty 
 164 -  selects all variables except `dot` which was empty anyway
-165 -  creates new variable `state` with all lower-case letters fromvthe previous state column 
+165 -  creates new variable `state` with all lower-case letters from the previous state column 
 
 167 -  creates new dataset name `starbucks_with_2018_pop_est` for changes to ocme
 168 -  starts with `starbucks_us_by_state` dataset which was previously defined already
 169 - left joins with `census_pop_est_2018` dataset
-170 -  this is left joined directly throguh the common column of `state`
+170 -  this is left joined directly through the common column of `state`
 171 -  creates new variable to measure Starbucks locations per 10,000 population
 
   7. Create a choropleth map that shows the number of Starbucks per 10,000 people on a map of the US. Use a new fill color, add points for all Starbucks in the US (except Hawaii and Alaska), add an informative title for the plot, and include a caption that says who created the plot (you!). Make a conclusion about what you observe.
@@ -211,6 +212,8 @@ starbucks_with_2018_pop_est %>%
   theme(legend.background = element_blank()) 
 ```
 
+
+Starbucks is present at a much higher rate per 10k in places w high populations like big cities and especially the west coast.  
 
 ### A few of your favorite things (`leaflet`)
 
@@ -304,7 +307,7 @@ ggmap(dc_map) +
        size = "Number of Departures")
 ```
 
-Higher percentage of casual users are pretty evenly spread throughout DC.  Higher percentage locations appear to be near more atraction type areas for tourism.  
+Higher percentage of casual users are pretty evenly spread throughout DC.  Higher percentage locations appear to be near more attraction type areas for tourism.  
 
 It appears casual users are more near tourist locations inner city whereas registered users who use more often appear to be more outside the city.  
   
@@ -451,12 +454,15 @@ mpls_all %>%
              color = ~pal17(prop_sus))
 ```
 
+Most sus activity is in SE minneapolis w some small patches in sw far corner.  
 
   
   18. Use `leaflet` to create a map of your own choosing. Come up with a question you want to try to answer and use the map to help answer that question. Describe what your map shows. 
   
   
 What does the distribution of stops look like for nonwhite people in Minneapolis?
+
+compared to my map above, nonwhite people have many more red dots (sus activty stops) than the cumulative data does with close to a majority spread equally appears to be for sus activity.  
 
   
 ```{r}
@@ -481,6 +487,3 @@ MplsStops %>%
   ![https://github.com/apalma127/Anthony_test_repo]
   
 
-
-
-**DID YOU REMEMBER TO UNCOMMENT THE OPTIONS AT THE TOP?**

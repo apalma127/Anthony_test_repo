@@ -439,11 +439,38 @@ mpls_all <- mpls_nbhd %>%
   17. Use `leaflet` to create a map from the `mpls_all` data  that colors the neighborhoods by `prop_suspicious`. Display the neighborhood name as you scroll over it. Describe what you observe in the map.
   
 
+```{r}
+pal17 <- colorNumeric("Reds",
+                    domain = mpls_all$prop_sus)
+mpls_all %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Stamen.Terrain) %>% 
+  addPolygons(label = ~neighborhood,
+             weight = .8,
+             opacity = 1,
+             color = ~pal17(prop_sus))
+```
+
 
   
   18. Use `leaflet` to create a map of your own choosing. Come up with a question you want to try to answer and use the map to help answer that question. Describe what your map shows. 
   
   
+What does the distribution of stops look like for nonwhite people in Minneapolis?
+
+  
+```{r}
+MplsStops %>% 
+  filter(race != c("white", "unknown")) %>% 
+  leaflet() %>% 
+  addProviderTiles(providers$Stamen.Terrain) %>% 
+  addCircles(lng = ~long, 
+             lat = ~lat, 
+             weight = .8,
+             opacity = 1,
+             color = ~pal_15(problem))  
+```
+
   
   
 ## GitHub link
@@ -451,6 +478,9 @@ mpls_all <- mpls_nbhd %>%
   19. Below, provide a link to your GitHub page with this set of Weekly Exercises. Specifically, if the name of the file is 04_exercises.Rmd, provide a link to the 04_exercises.md file, which is the one that will be most readable on GitHub.
   
   
+  ![https://github.com/apalma127/Anthony_test_repo]
+  
+
 
 
 **DID YOU REMEMBER TO UNCOMMENT THE OPTIONS AT THE TOP?**

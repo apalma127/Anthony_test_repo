@@ -20,7 +20,6 @@ knitr::opts_chunk$set(echo = TRUE,
 library(tidyverse)     # for graphing and data cleaning
 library(lubridate)     # for date manipulation
 library(ggthemes)      # for even more plotting themes
-#library(janitor)       # for cleaning variable names
 theme_set(theme_minimal()) # My favorite ggplot() theme :)
 ```
 
@@ -40,8 +39,31 @@ earn <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidyt
 # earn <- tuesdata$earn
 ```
 
-This week's data comes from the Bureau of Labor Statistics (BLS). Make sure to check out the data before jumping into graphs - there's some total variables and levels of variables that you will want to be careful of. Read more details about the data [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-02-23/readme.md). Take a look at the code that was used to clean the data - you will recognize A LOT of it. And thank you to Thomas Mock for doing all that cleaning for us :)
 
-Continue trying to make a title that is informative and helps the viewers interpret the graph. Try to leave out the x and y axis labels, if you can. 
+```{r, eval = FALSE}
+earn %>% 
+  filter(quarter == 4, age == "16 to 24 years", sex != "Both Sexes", race != "All Races") %>%
+  ggplot((aes(x=year, y=median_weekly_earn, color = sex))) +
+  geom_line() +
+  facet_wrap(~race) +
+  geom_text(aes(label = sex)) + 
+  scale_x_continuous(breaks = seq(2010, 2020, 2)) +
+  labs(title = "Q4 Median Weekly Earnings for Those Aged 16 to 24 Across Years", subtitle = "Year: {frame_along}", 
+       x = "", y="") +
+  transition_reveal(year) +
+  theme(plot.title = element_text(size=rel(1.2)), 
+        plot.subtitle =  element_text(size=rel(0.8)), 
+        plot.background = element_rect(fill = "antiquewhite2"), 
+        panel.grid.major = element_line(colour = "antiquewhite2"), 
+        axis.text = element_text(colour = "gray"), 
+        legend.position = "none")
 
-When you are finished, please delete all the unneeded code and instructions and uncomment (delete the `#`) in the options section of code at the top. I encourage you to tweet out your graph with the `#TidyTuesday` hashtag and tag me, `@lisalendway`. See the Tidy Tuesday description file if you want to use our `@MacTidyTuesday` Twitter account to do that. I also recommend adding a caption or tag label with your name. You can do this by adding `labs(caption = "Your name")` to your plot code.
+anim_save("earnings.gif")
+
+```
+
+```{r}
+knitr::include_graphics("earnings.gif")
+
+```
+

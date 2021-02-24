@@ -1,0 +1,47 @@
+---
+title: 'Tidy Tuesday #5'
+author: "Anthony Palma"
+output: 
+  html_document:
+    df_print: paged
+    code_download: true
+    theme: cerulean
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      error=TRUE, 
+                      message=FALSE, 
+                      warning=FALSE)
+```
+
+
+```{r libraries}
+library(tidyverse)     # for graphing and data cleaning
+library(lubridate)     # for date manipulation
+library(ggthemes)      # for even more plotting themes
+#library(janitor)       # for cleaning variable names
+theme_set(theme_minimal()) # My favorite ggplot() theme :)
+```
+
+```{r}
+# Read in the data for the week
+employed <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/employed.csv')
+
+earn <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-02-23/earn.csv')
+
+# If the code above gives an error, uncomment the code below and use it instead. You will need to install the tidytuesdayR package first
+
+# library(tidytuesdayR)
+# 
+# tuesdata <- tidytuesdayR::tt_load(2021, week = 9)
+# 
+# employed <- tuesdata$employed
+# earn <- tuesdata$earn
+```
+
+This week's data comes from the Bureau of Labor Statistics (BLS). Make sure to check out the data before jumping into graphs - there's some total variables and levels of variables that you will want to be careful of. Read more details about the data [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-02-23/readme.md). Take a look at the code that was used to clean the data - you will recognize A LOT of it. And thank you to Thomas Mock for doing all that cleaning for us :)
+
+Continue trying to make a title that is informative and helps the viewers interpret the graph. Try to leave out the x and y axis labels, if you can. 
+
+When you are finished, please delete all the unneeded code and instructions and uncomment (delete the `#`) in the options section of code at the top. I encourage you to tweet out your graph with the `#TidyTuesday` hashtag and tag me, `@lisalendway`. See the Tidy Tuesday description file if you want to use our `@MacTidyTuesday` Twitter account to do that. I also recommend adding a caption or tag label with your name. You can do this by adding `labs(caption = "Your name")` to your plot code.
